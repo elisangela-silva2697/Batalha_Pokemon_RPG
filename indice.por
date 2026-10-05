@@ -1,17 +1,29 @@
  programa {
   inclua biblioteca Graficos --> graficos
   inclua biblioteca Util --> util
+  const inteiro LARGURA = 800
+  const inteiro ALTURA = 500
+
     funcao inicio() {
       // Funções da biblioteca de gráficos parar montar a tela de jogo
         graficos.iniciar_modo_grafico(verdadeiro)
-        graficos.definir_dimensoes_janela(800, 500)
+        graficos.definir_dimensoes_janela(LARGURA, ALTURA)
         graficos.definir_titulo_janela("Batalha Pokémon RPG")
+        /**
+         * Tipos e variáveis:
+         * cadeia - tipo de dado parar escrever textos, exemplo: "Batalha Pokémon"
+         * caractere - tipo de dado usado apenas para screver apenas um caracter, exemplo: "M"
+         * logico - tipo de dado para informar se o valor é verdadeiro ou falso, exemplo: cadastrado = falso
+         * inteiro - tipo de dado para informar números inteiros sem casas deci,ais, exemplo: idade = 17
+         * real - tipo de dado para informar números com casas decimais, exemplo: preço = 35.00
+         * vazio - tipo de dado usado para acessar fynções sem retorno de valor, exemplo: função escreva
+         */
         //Definição da cor do céu
         graficos.definir_cor(graficos.criar_cor(150, 216, 250))
-        graficos.desenhar_retangulo(0, 0, 800, 240, falso, verdadeiro)
+        graficos.desenhar_retangulo(0, 0, LARGURA, 240, falso, verdadeiro)
         //Definição da grama do jogo
         graficos.definir_cor(graficos.criar_cor(120, 190, 100))
-        graficos.desenhar_retangulo(0, 260, 800, 240, falso, verdadeiro)
+        graficos.desenhar_retangulo(0, 260, LARGURA, 240, falso, verdadeiro)
         //Plataforma oval do pokémon inimigo
         graficos.definir_cor(graficos.criar_cor(90, 130, 80))
         graficos.desenhar_elipse(475, 165, 250, 65, verdadeiro)
