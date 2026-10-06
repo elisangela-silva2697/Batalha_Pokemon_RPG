@@ -27,6 +27,20 @@
         cadeia pokemon_inimigo = "Gengan"
         inteiro hp_pokemon_inimigo = 120
         inteiro max_hp_pokemon_inimigo = 120
+        desenhar_cena(
+          meu_pokemon,
+          hp_meu_pokemon,
+          max_hp_meu_pokemon,
+          pokemon_inimigo,
+          hp_pokemon_inimigo,
+          max_hp_pokemon_inimigo,
+          "Um " + pokemon_inimigo + " selvagem apareceu! "
+
+        )
+        //ENTRADA: o jogo aguardar o jogador confirmar antes de executar:
+        escreva("Pressione ENTER parar atacar... ")
+        cadeia continuar
+        leia(continuar)
         /**
          * Operadores aritméticos:
          * soma(+) = operador utilizado para somar dois ou mais números
@@ -40,13 +54,50 @@
          * depois vem a soma e por fim a subtração, exemplo:
          * (2 + 2) / 2 * 2 + 2 - 2
          */
-        inteiro dano = util.sorteia(22, 35)
-        hp_pokemon_inimigo = hp_pokemon_inimigo - dano
-        escreva("=== FICHA BATALHA ===", "\n")
-        escreva(meu_pokemon, " - HP: ", hp_meu_pokemon, "/", max_hp_meu_pokemon, "\n")
-        escreva(pokemon_inimigo, " - HP: ", hp_pokemon_inimigo, "/", max_hp_pokemon_inimigo, "\n")
 
-        //Definição da cor do céu
+        inteiro dano = util.sorteia(22, 90)
+        hp_pokemon_inimigo = hp_pokemon_inimigo - dano
+        /**
+         * Operadores relacionais:
+         * > sinal de maior que
+         * < sinal de menor que
+         * >= sinal de maior ou igual
+         * <= sinal de menor ou igual
+         * == sinal de igual
+         * != sinal de diferente 
+         * Todods os operadores relacionais retornar verdadeiro ou falso
+         */
+        se(hp_pokemon_inimigo < 0) {
+          hp_pokemon_inimigo = 0
+        }
+        //Saída com o resultado do dano causado ao pokémon inimigo
+        escreva(">> ", meu_pokemon, " causou ", dano, " de dano ", "\n")
+        escreva(">> ", pokemon_inimigo, ": ", hp_pokemon_inimigo, "/", max_hp_pokemon_inimigo, "\n")
+
+        escreva("Janela gráfica aberta! Tela criada com a biblioteca de gráficos! ", "\n")
+        desenhar_cena(
+          meu_pokemon,
+          hp_meu_pokemon,
+          max_hp_meu_pokemon,
+          pokemon_inimigo,
+          hp_pokemon_inimigo,
+          max_hp_pokemon_inimigo,
+          meu_pokemon + " causou " + dano + " de dano! "
+
+        )
+        //Esta função aguarda 5 segundos para encerrar o programa
+        util.aguarde(15000)
+    }
+    funcao vazio desenhar_cena(
+      cadeia p_nome_pokemon,
+      inteiro p_hp_pokemon,
+      inteiro p_max_hp_pokemon,
+      cadeia i_nome_pokemon,
+      inteiro i_hp_pokemon,
+      inteiro i_max_hp_pokemon,
+      cadeia mensagem
+      )
+       {//Definição da cor do céu
         graficos.definir_cor(graficos.criar_cor(150, 216, 250))
         graficos.desenhar_retangulo(0, 0, LARGURA, 260, falso, verdadeiro)
         //Definição da grama do jogo
@@ -65,15 +116,25 @@
         graficos.definir_cor(graficos.criar_cor(255, 215, 0))
         graficos.desenhar_retangulo(180, 280, 110, 100, falso, verdadeiro)
         //Textos dos pokémons na tela do jogo
+        graficos.definir_cor(graficos.criar_cor(250, 250, 235))
+        graficos.desenhar_retangulo(50, 40, 300, 75, falso, verdadeiro)
         graficos.definir_cor(graficos.COR_PRETO)
-        graficos.desenhar_texto(60, 55, pokemon_inimigo + " HP: " + hp_pokemon_inimigo + "/" + max_hp_pokemon_inimigo)
-        graficos.desenhar_texto(480, 372, meu_pokemon + " HP: " + hp_meu_pokemon + "/" + max_hp_meu_pokemon)
+        graficos.desenhar_retangulo(450, 310, 300, 75, falso, falso)
+        graficos.desenhar_texto(60, 55, i_nome_pokemon + " HP: " + i_hp_pokemon + "/" + i_max_hp_pokemon)
 
+        graficos.definir_cor(graficos.criar_cor(250, 250, 235))
+        graficos.desenhar_retangulo(450, 310, 300, 75, falso, verdadeiro)
+        graficos.definir_cor(graficos.COR_PRETO)
+        graficos.desenhar_retangulo(450, 310, 300, 75, falso, falso)
+        graficos.desenhar_texto(480, 372, p_nome_pokemon + " HP: " + p_hp_pokemon + "/" + p_max_hp_pokemon)
+        //Campo onde ficará as mensagens na tela do jogo
+        graficos.definir_cor(graficos.criar_cor(250, 250, 235))
+        graficos.desenhar_retangulo(20, 420, 760, 65, falso, verdadeiro)
+        graficos.definir_cor(graficos.COR_PRETO)
+        graficos.desenhar_retangulo(20, 420, 760, 65, falso, falso)
+        graficos.desenhar_texto(40, 445, mensagem)
         //Esta função é responsável por abrir a tela do jogo
         graficos.renderizar()
-        escreva("Janela gráfica aberta! Tela criada com a biblioteca de gráficos ", "\n")
 
-        //Esta função aguarda 5 segundos para encerrar o programa
-        util.aguarde(5000)
     }
  }
